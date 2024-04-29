@@ -1,0 +1,27 @@
+DATASET:
+  path: "results/data.csv"
+  features: ["parcummjm2d", "total_pre_all_csmm", "total_ep_all_csmm",
+    "total_ref_et_all_csmm", "total_iwr_all_csmm",
+    "mean_ari_index_all_cs", "num_ddd", "number_dsperiods",
+    "mean_lenght_dsdays", "max_lenght_dsdays", "num_wddays",
+    "number_wsperiods", "mean_intensitymmday", "mean_lenght_wsdays",
+    "max_lenght_wsdays", "num_hd_tmaxdays", "num_hw_tmaxwaves",
+    "mean_lenght_hw_tmaxday", "max_lenght_hw_tmaxday", "num_hd_tminnight",
+    "num_hw_tminwaves", "mean_lenght_hw_tminnights", "max_lenght_hw_tminnights"]
+  target: yieldkgha
+
+MODEL:
+  model_name: rf
+  output: "results"
+  cv: 3
+  save: true
+  grid_search_params:
+    n_estimators: [200]
+    max_features: [ 0.4, 0.6, 0.8]
+    max_depth : [2,4,8,16,32]
+    min_samples_split : [2,4,8]
+    max_samples: [0.7,0.9]
+
+DATASPLIT:
+  kfolds: 10
+  test_percentage: null
